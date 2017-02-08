@@ -1,0 +1,48 @@
+﻿@model NetProblemsExample.Models.UserClass
+@{
+    ViewBag.Title = "SecondPage";
+}
+
+<h2>SecondPage</h2>
+
+@if (!Model.UserIsDone)
+{
+    <ul>
+        <li>
+            @using (Html.BeginForm("SecondPage", "Home", FormMethod.Post))
+            {
+
+                <div class="form-group">
+                    @Html.Label("First Name")
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", autofocus = "autofocus" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("Last Name")
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", autofocus = "autofocus" })
+                </div>
+                <div class="form-group">
+                    @Html.Label("User Name")
+                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", autofocus = "autofocus" })
+                </div>
+                <div class="form-group">
+                    @Html.HiddenFor(m => m.UserIsDone, new { @Value = true })
+                </div>
+                <br />
+                <input type="submit" class="btn btn-primary" name="Submit" />
+            }
+        </li>
+    </ul>
+}
+else
+{
+    <ul>
+        <li>
+            <label> username:  @Model.UserName</label><br/>
+            <label> person first name: @Model.FirstName</label><br/>
+            <Label> person last name: @Model.LastName</Label>
+            <form action="~/Home/ThirdPage">
+                <button class="btn btn-success">Next page</button>
+            </form>
+        </li>
+    </ul>
+}
